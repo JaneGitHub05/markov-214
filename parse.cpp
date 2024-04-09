@@ -49,14 +49,22 @@ int main(int argc, char* argv[]) {
         prev = "\n";
     }
     int size = dict.size();
-    int transform[size][size];
-    memset(transform, 0, size);
+    double transform[size][size];
+    memset(transform, 0, size * size * sizeof(int));
     int i2 = 0;
     for (auto& prob : probs) {
         for (int j = 0; j < prob.second.size(); j++) {
-            transform[i2][0];
+            cout << prob.second[j] << " * ";
+            transform[i2][dict[prob.second[j]]] += (1 / prob.second.size());
         }
         i2++;
+    }
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            cout << transform[i][j] << " ";
+        }
+        cout << "\n";
     }
 
     return 0;
