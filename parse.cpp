@@ -7,6 +7,7 @@
 #include <map>
 
 #include <getopt.h>
+#include <string.h>
 
 #include <bits/stdc++.h>
 
@@ -16,13 +17,13 @@ using namespace std;
 int main(int argc, char* argv[]) {
     string line;
     unordered_map<string, vector<string>> probs;
-    vector<string> dict;
+    unordered_map<string, int> dict;
     //! \n isn't treated as readible sequence
     //! Some punctuation gets read into the same string as words
     string prev = "\n";
     probs["\n"];
-    dict[0] = "\n";
-    int count = 1;
+    dict["\n"] = 0;
+    int index = 1;
     while (getline(cin, line, '\n')) {
         stringstream st(line);
         string word;
@@ -37,7 +38,7 @@ int main(int argc, char* argv[]) {
                 cout << onlychars << " ";
                 probs[onlychars];
                 if (dict.find(onlychars) == dict.end()) {
-                    dict[count++] = onlychars;
+                    dict[onlychars] = index++;
                 }
                 probs[prev].push_back(onlychars);
                 prev = onlychars;
@@ -49,10 +50,13 @@ int main(int argc, char* argv[]) {
     }
     int size = dict.size();
     int transform[size][size];
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            probs[] cout << transform[i][j];
+    memset(transform, 0, size);
+    int i2 = 0;
+    for (auto& prob : probs) {
+        for (int j = 0; j < prob.second.size(); j++) {
+            transform[i2][0];
         }
+        i2++;
     }
 
     return 0;
