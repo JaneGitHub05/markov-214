@@ -5,6 +5,11 @@ import numpy as np
 # Functionality: 
 # 1. Take in transformation matrix and an input state
 # 2. Predict resultant state after n steps using - 
+
+input("Enter transformation matrix")
+
+input("Enter initial state")
+
 # TODO: Solution 1: for-loop OR recursive
 
 # TODO: Solution 2: Diagonalize, then raise to power
