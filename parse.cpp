@@ -17,6 +17,8 @@ int main(int argc, char* argv[]) {
     unordered_map<string, vector<string>> probs;
     //! \n isn't treated as readible sequence
     //! Some punctuation gets read into the same string as words
+    string prev = "\n";
+    probs["\n"];
     while (getline(cin, line, '\n')) {
         stringstream st(line);
         string word;
@@ -29,9 +31,14 @@ int main(int argc, char* argv[]) {
             }
             if (onlychars.length() > 0) {
                 cout << onlychars << " ";
+                probs[onlychars];
+                probs[prev].push_back(onlychars);
+                prev = onlychars;
             }
         }
         cout << "\n";
+        probs[prev].emplace_back("\n");
+        prev = "\n";
     }
     return 0;
 }
