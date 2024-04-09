@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -17,18 +18,9 @@ int main(int argc, char* argv[]) {
     //! \n isn't treated as readible sequence
     //! Some punctuation gets read into the same string as words
     while (getline(cin, line)) {
-        stringstream st(line);
-        if (isupper([0])) {
-            cout << static_cast<char>(tolower(word[0])) << " ";
-        }
-        cout << word << " ";
-        if (auto search = count.find(word); search != count.end()) {
-            count[word] += 1;
-            cout << word << ": " << count[word] << "\n";
-        } else {
-            count[word] = 1;
-        }
-        cout << "\n";
+        stringstream st(tolower(line));
+        string word;
+        while (getline(st, word, ' ')) {}
     }
     return 0;
 }
