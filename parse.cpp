@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
   string word;
   unordered_map<string, int> count;
   //! \n isn't treated as readible sequence
+  //! Some punctuation gets read into the same string as words
   while (cin >> word) {
     if (isupper(word[0])) {
       cout << static_cast<char>(tolower(word[0])) << " ";
