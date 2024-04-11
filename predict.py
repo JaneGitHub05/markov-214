@@ -11,8 +11,8 @@ for word in line.split():
 # Record transition matrix
 rows, cols = len(words), len(words)
 print(f"{rows} x {cols}")
-matrix = [[]]
-for r in range(0, rows - 1):
+matrix = [[] for i in range(rows)]
+for r in range(0, rows):
     try:
         row = input()
         for val in row.split():
