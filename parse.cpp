@@ -73,13 +73,21 @@ int main(int argc, char* argv[]) {
     }
 
     fstream fout;
-    fout.open("transform.csv", ios::out | ios::app);
+    fout.open("transformnew.csv", ios::out | ios::app);
+    for (auto& i : dict) {
+        if (i.first[0] != '\n') {
+            fout << i.first << ",";
+        }
+    }
+    fout << "\n";
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             fout << transform[i][j] << ",";
         }
         fout << "\n";
     }
+    remove("transform.csv");
+    rename("transformnew.csv", "transform.csv");
 
     return 0;
 }
