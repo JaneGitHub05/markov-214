@@ -77,16 +77,24 @@ int main(int argc, char* argv[]) {
 
     fstream fout;
     fout.open("transformnew.csv", ios::out | ios::app);
-    fout << num << ",\n";
+    fout << num << "\n";
+    int k = 0;
     for (auto& i : dict) {
         if (i.first[0] != '\n') {
-            fout << i.first << ",";
+            fout << i.first;
+            if (k != size - 1) {
+                fout << ",";
+            }
         }
+        k++;
     }
     fout << "\n";
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-            fout << transform[i][j] << ",";
+            fout << transform[i][j];
+            if (j != size - 1) {
+                fout << ",";
+            }
         }
         fout << "\n";
     }
