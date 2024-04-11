@@ -9,17 +9,20 @@ for word in line.split():
     words.append(word)
     print(f"{word} ")
 # Record transition matrix
-rows, cols = (len(words), len(words))
+rows, cols = len(words), len(words)
 print(f"{rows} x {cols}")
-matrix = [rows][cols]
-while True:
+matrix = [[]]
+for r in range(0, rows - 1):
     try:
         row = input()
-        for i in row.split():
-            val = i
+        for val in row.split():
+            matrix[r].append(val)
             print(f"{val} ")
     except EOFError: # reached end of file
         break
+
+for v in matrix:
+    print(f"{v}")
 
 ######## Functionality ######## 
 # 1. Take in transformation matrix and an input state
