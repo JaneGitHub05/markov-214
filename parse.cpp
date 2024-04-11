@@ -16,8 +16,8 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     string line;
-    unordered_map<string, vector<string>> probs;
-    unordered_map<string, int> dict;
+    map<string, vector<string>> probs;
+    map<string, int> dict;
     //! \n isn't treated as readible sequence
     //! Some punctuation gets read into the same string as words
     string prev = "\n";
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
                 cout << onlychars << " ";
                 probs[onlychars];
                 if (dict.find(onlychars) == dict.end()) {
-                    dict[onlychars] = index++;
+                    dict[onlychars] = 0;
                 }
                 probs[prev].push_back(onlychars);
                 prev = onlychars;
@@ -50,12 +50,17 @@ int main(int argc, char* argv[]) {
     }
     int size = dict.size();
     double transform[size][size];
-    memset(transform, 0, size * size * sizeof(int));
+    memset(transform, 0, size * size * sizeof(double));
     int i2 = 0;
+    cout << "\n\n";
+    for (auto& d : dict) {
+        d.second = i2;
+        i2++;
+    }
+    i2 = 0;
     for (auto& prob : probs) {
         for (int j = 0; j < prob.second.size(); j++) {
-            cout << prob.second[j] << " * ";
-            transform[i2][dict[prob.second[j]]] += (1 / prob.second.size());
+            transform[i2][dict[prob.second[j]]] += (static_cast<double>(1) / prob.second.size());
         }
         i2++;
     }
