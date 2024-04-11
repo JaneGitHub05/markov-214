@@ -72,5 +72,14 @@ int main(int argc, char* argv[]) {
         cout << "\n";
     }
 
+    fstream fout;
+    fout.open("transform.csv", ios::out | ios::app);
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            fout << transform[i][j] << ",";
+        }
+        fout << "\n";
+    }
+
     return 0;
 }
