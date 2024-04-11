@@ -7,7 +7,7 @@ words = []
 line = input()
 for word in line.split():
     words.append(word)
-    print(f"{word} ")
+    # print(f"{word} ")
 # Record transition matrix
 rows, cols = len(words), len(words)
 print(f"{rows} x {cols}")
@@ -15,9 +15,9 @@ matrix = [[] for i in range(rows)]
 for r in range(0, rows):
     try:
         row = input()
-        for val in row.split():
+        for val in row.split(','):
             matrix[r].append(val)
-            print(f"{val} ")
+            # print(f"{val} ")
     except EOFError: # reached end of file
         break
 
