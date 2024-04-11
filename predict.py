@@ -1,27 +1,41 @@
+import numpy as np
+import pandas as pd
 # GOAL: Generate line of n words given an initial word + track runtime between two solutions
 
 ######## Retrieve input #########
+# Get user input (number of words to generate after a newline)
+x = input()
+print(f"{x}")
 
 # Get ordered list of words
 words = []
 line = input()
-for word in line.split():
+for word in line.split(','):
     words.append(word)
     # print(f"{word} ")
 # Record transition matrix
-rows, cols = len(words), len(words)
-print(f"{rows} x {cols}")
-matrix = [[] for i in range(rows)]
-for r in range(0, rows):
+n = len(words)
+print(f"{n} x {n}")
+matrix = [[] for i in range(n)]
+# m2 = np.zeros((n, n))
+
+for i in range(0, n):
     try:
         row = input()
         for val in row.split(','):
-            matrix[r].append(val)
+            matrix[i].append(val)
             # print(f"{val} ")
     except EOFError: # reached end of file
         break
 
-for v in matrix:
+# m2 = matrix
+
+# for v in m2:
+#     print(f"{v}")
+
+tmatrix = np.transpose(matrix)
+
+for v in tmatrix:
     print(f"{v}")
 
 ######## Functionality ######## 
