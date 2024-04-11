@@ -7,6 +7,7 @@
 #include <map>
 
 #include <getopt.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include <bits/stdc++.h>
@@ -15,6 +16,8 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {
+    int num = atoi(argv[1]);
+    cout << num << " \n";
     string line;
     map<string, vector<string>> probs;
     map<string, int> dict;
@@ -74,6 +77,7 @@ int main(int argc, char* argv[]) {
 
     fstream fout;
     fout.open("transformnew.csv", ios::out | ios::app);
+    fout << num << ",\n";
     for (auto& i : dict) {
         if (i.first[0] != '\n') {
             fout << i.first << ",";
