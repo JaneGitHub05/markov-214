@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import sys
+
 # GOAL: Generate line of x words given an initial word + track runtime between two solutions
 #* THIS IS A FIRST-ORDER MODEL: only considers T(n-1) for T(n) - "memoryless" property of a stochastic process
 
@@ -9,7 +11,7 @@ initial = input()
 print(f"{initial}")
 x = int(input())
 print(f"{x}")
-# TODO: Get user input (method of predicting x words: it or diag)
+# TODO: Get user input (generate (iterate) or predict (diagonalize))
 
 # Get ordered list of words
 words = ["\n"]
