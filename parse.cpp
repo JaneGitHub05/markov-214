@@ -22,8 +22,6 @@ int main(int argc, char *argv[]) {
   string line;
   map<string, vector<string> > probs;
   map<string, int> dict;
-  //! \n isn't treated as readible sequence
-  //! Some punctuation gets read into the same string as words
   string prev = "\n";
   probs["\n"];
   dict["\n"] = 0;
