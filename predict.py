@@ -12,6 +12,7 @@ print(f"{initial}")
 x = int(input())
 print(f"{x}")
 # TODO: Get user input (generate (iterate) or predict (diagonalize))
+print(f"{sys.argv[1]}")
 
 # Get ordered list of words
 words = ["\n"]
