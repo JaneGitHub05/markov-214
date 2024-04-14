@@ -62,3 +62,6 @@ for i in range(x):
     nextState[nextWord] = 1
 
 # TODO: Solution 2: Diagonalize, then raise to power
+    eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
+    eigenvalues_powered = np.power(eigenvalues, x)
+    reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
