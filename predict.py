@@ -65,3 +65,5 @@ for i in range(x):
     eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
     eigenvalues_powered = np.power(eigenvalues, x)
     reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
+    final_matrix = reconstructed_matrix * initialState
+    
