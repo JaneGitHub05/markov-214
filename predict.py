@@ -53,10 +53,10 @@ initialState.shape = (n, 1)
 nextState = initialState
 for i in range(x):
     print(f"{nextState}")
-    nextState = np.matmul(tmatrix, nextState)
+    # nextState = np.matmul(tmatrix, nextState)
     # transform nextState from nD into 1D array
     nextState1D = np.ndarray.flatten(nextState)
-    print(f"{pd.Series(nextState1D).idxmax()}: {words[pd.Series(nextState1D).idxmax()]}")
+    # print(f"{pd.Series(nextState1D).idxmax()}: {words[pd.Series(nextState1D).idxmax()]}")
     nextWord = pd.Series(nextState1D).idxmax()
     nextState = [0 for i in range(n)]
     nextState[nextWord] = 1
