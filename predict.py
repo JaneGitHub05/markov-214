@@ -40,8 +40,9 @@ for i in range(0, n):
 # transpose matrix
 tmatrix = np.transpose(matrix)
 
-print(f"{tmatrix}")
+# print(f"{tmatrix}")
 
+# generate initial state vector
 initialState = np.array([0 for i in range(n)])
 initialState[words.index(initial)] = 1
 # transform input from row to column vector
@@ -52,11 +53,13 @@ initialState.shape = (n, 1)
 # TODO: Solution 1: for-loop OR recursive
 nextState = initialState
 for i in range(x):
-    print(f"{nextState}")
-    # nextState = np.matmul(tmatrix, nextState)
+    # print(f"{nextState}")
+    nextState = np.matmul(tmatrix, nextState)
     # transform nextState from nD into 1D array
     nextState1D = np.ndarray.flatten(nextState)
     # print(f"{pd.Series(nextState1D).idxmax()}: {words[pd.Series(nextState1D).idxmax()]}")
+    print(f"{words[pd.Series(nextState1D).idxmax()]} ", end="")
+    # generate next state vector based on what word had the highest probability of appearing
     nextWord = pd.Series(nextState1D).idxmax()
     nextState = [0 for i in range(n)]
     nextState[nextWord] = 1
