@@ -8,6 +8,8 @@ import sys
 ######## Take in input #########
 # Get user input (initial word, and number of words to generate after it)
 initial = input()
+if initial == "newline":
+    initial = "\n"
 print(f"{initial}")
 x = int(input())
 print(f"{x}")
@@ -21,7 +23,7 @@ for word in line.split(','):
     words.append(word)
     # print(f"{word} ")
 # record transition matrix
-n = len(words) # + 1 if taking in csv, because csv doesn't include \n
+n = len(words)
 print(f"{n} x {n}")
 matrix = [[] for i in range(n)]
 # npmatrix = np.zeros((n, n))
@@ -65,8 +67,12 @@ for i in range(x):
     nextState[nextWord] = 1
 
 # TODO: Solution 2: Diagonalize, then raise to power
-    eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
-    eigenvalues_powered = np.power(eigenvalues, x)
-    reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
-    final_matrix = reconstructed_matrix * initialState
+eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
+eigenvalues_powered = np.power(eigenvalues, x)
+reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
+final_matrix = reconstructed_matrix @ initialState
+
+index_of_largest = np.argmax(final_matrix)
+predicted_word = words[index_of_largest]
+print(f"{predicted_word}")
     
