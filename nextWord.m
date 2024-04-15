@@ -3,7 +3,6 @@
 %%input: probability matrix "wordMat" (given one word), vector "wordVec" IDing specific word
 
 function nW = nextWord(wordMat, wordVec)
-    wordProb = nextWord*wordVec
-    nW = [prob, index];
-    nW = max(wordProb);
+    wordProb = nextWord*wordVec;
+    nW = [wordprob, find(wordProb == max(wordProb))];
 end
