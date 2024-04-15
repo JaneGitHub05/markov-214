@@ -85,7 +85,9 @@ elif sys.argv[1] == "iter":
 elif sys.argv[1] == "diag":
 # TODO: Solution 2: diagonalization method
     eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
-    eigenvalues_powered = np.power(eigenvalues, x)
+    # np.power has a higher latency than np.exp(np.log...)
+    # eigenvalues_powered = np.power(eigenvalues, x)
+    eigenvalues_powered = np.exp(np.log(eigenvalues) * x)
     reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
     final_matrix = reconstructed_matrix @ initialState
 
