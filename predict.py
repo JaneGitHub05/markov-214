@@ -80,7 +80,7 @@ elif sys.argv[1] == "iter":
         nextState = [0 for i in range(n)]
         nextState[nextWord] = 1
 
-    print(f"\n{x}th word: {words[pd.Series(nextState1D).idxmax()]}")
+    print(f"{x}th word: {words[pd.Series(nextState1D).idxmax()]}")
 
 elif sys.argv[1] == "diag":
 # TODO: Solution 2: diagonalization method
