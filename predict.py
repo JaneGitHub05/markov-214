@@ -10,11 +10,9 @@ import sys
 initial = input()
 if initial == "newline":
     initial = "\n"
-print(f"{initial}")
+# print(f"{initial}")
 x = int(input())
-print(f"{x}")
-# TODO: Get user input (generate (iterate) or predict (diagonalize))
-print(f"{sys.argv[1]}")
+# print(f"{x}")
 
 # Get ordered list of words
 words = ["\n"]
@@ -24,9 +22,8 @@ for word in line.split(','):
     # print(f"{word} ")
 # record transition matrix
 n = len(words)
-print(f"{n} x {n}")
+# print(f"{n} x {n}")
 matrix = [[] for i in range(n)]
-# npmatrix = np.zeros((n, n))
 
 for i in range(0, n):
     try:
@@ -51,28 +48,52 @@ initialState[words.index(initial)] = 1
 initialState.shape = (n, 1)
 # print(f"{input}")
 
-#* 2. Predict resultant state after n steps using - 
-# TODO: Solution 1: for-loop OR recursive
-nextState = initialState
-for i in range(x):
-    # print(f"{nextState}")
-    nextState = np.matmul(tmatrix, nextState)
-    # transform nextState from nD into 1D array
-    nextState1D = np.ndarray.flatten(nextState)
-    # print(f"{pd.Series(nextState1D).idxmax()}: {words[pd.Series(nextState1D).idxmax()]}")
-    print(f"{words[pd.Series(nextState1D).idxmax()]} ", end="")
-    # generate next state vector based on what word had the highest probability of appearing
-    nextWord = pd.Series(nextState1D).idxmax()
-    nextState = [0 for i in range(n)]
-    nextState[nextWord] = 1
+#* 2. Predict state after x steps using - 
+if sys.argv[1] == "generate":
+# TODO: Solution 1.1: iterative generation
+    nextState = initialState
+    for i in range(x):
+        # print(f"{nextState}")
+        nextState = np.matmul(tmatrix, nextState)
+        # transform nextState from nD into 1D array
+        nextState1D = np.ndarray.flatten(nextState)
+        # print(f"{pd.Series(nextState1D).idxmax()}: {words[pd.Series(nextState1D).idxmax()]}")
+        if words[pd.Series(nextState1D).idxmax()] != "\n":
+            print(f"{words[pd.Series(nextState1D).idxmax()]} ", end="")
+        else:
+            print(f"{words[pd.Series(nextState1D).idxmax()]}")
+        # generate next state vector based on what word had the highest probability of appearing
+        nextWord = pd.Series(nextState1D).idxmax()
+        nextState = [0 for i in range(n)]
+        nextState[nextWord] = 1
 
-# TODO: Solution 2: Diagonalize, then raise to power
-eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
-eigenvalues_powered = np.power(eigenvalues, x)
-reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
-final_matrix = reconstructed_matrix @ initialState
+elif sys.argv[1] == "iter":
+# TODO: Solution 1.2: iterative method
+    nextState = initialState
+    for i in range(x):
+        # print(f"{nextState}")
+        nextState = np.matmul(tmatrix, nextState)
+        # transform nextState from nD into 1D array
+        nextState1D = np.ndarray.flatten(nextState)
+        # generate next state vector based on what word had the highest probability of appearing
+        nextWord = pd.Series(nextState1D).idxmax()
+        nextState = [0 for i in range(n)]
+        nextState[nextWord] = 1
 
-index_of_largest = np.argmax(final_matrix)
-predicted_word = words[index_of_largest]
-print(f"{predicted_word}")
-    
+    print(f"\n{x}th word: {words[pd.Series(nextState1D).idxmax()]}")
+
+elif sys.argv[1] == "diag":
+# TODO: Solution 2: diagonalization method
+    eigenvalues, eigenvectors = np.linalg.eig(tmatrix)
+    eigenvalues_powered = np.power(eigenvalues, x)
+    reconstructed_matrix = eigenvectors @ np.diag(eigenvalues_powered) @ np.linalg.inv(eigenvectors)
+    final_matrix = reconstructed_matrix @ initialState
+
+    index_of_largest = np.argmax(final_matrix)
+    predicted_word = words[index_of_largest]
+    print(f"{x}th word: {predicted_word}")
+else:
+    print("Please input one of the following:")
+    print(f"    'generate' to generate the next {x} words")
+    print("    'iter' for prediction using the iterative method")
+    print("    'diag' for prediction using the diagonalization method")
