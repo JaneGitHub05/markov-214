@@ -8,18 +8,19 @@
 
 table1 = readtable('transform.csv',"NumHeaderLines", 2, "VariableNamingRule", "preserve");
 
-wordCell = table1.Properties.VariableNames;
-numWords = width(table1);
-words = strings(numWords);
-words = words(:,1);
+wordCell = cell2mat(table1.Properties.VariableNames);
+words = zeros(size(wordCell));
 words(1) = '/n';
-for n = 2:numWords
-    words(n) = wordCell{n-1};
+for n = 2:size(wordCell)
+    words(n) = wordCell(n-1);
 end
 beginWord = "know";
+numWords = width(table1);
 i=0;
 startVec = (words==beginWord);
-matrix = transpose(table1{:,:});
+matrix = table1{:,:}
+
+
 
 output = Bumblebee(matrix, startVec, 6, words);
 
