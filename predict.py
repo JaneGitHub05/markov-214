@@ -79,7 +79,6 @@ elif sys.argv[1] == "iter":
         nextWord = pd.Series(nextState1D).idxmax()
         nextState = [0 for i in range(n)]
         nextState[nextWord] = 1
-
     print(f"{x}th word: {words[pd.Series(nextState1D).idxmax()]}")
 
 elif sys.argv[1] == "diag":
@@ -94,6 +93,7 @@ elif sys.argv[1] == "diag":
     index_of_largest = np.argmax(final_matrix)
     predicted_word = words[index_of_largest]
     print(f"{x}th word: {predicted_word}")
+
 else:
     print("Please input one of the following:")
     print(f"    'generate' to generate the next {x} words")
