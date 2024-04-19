@@ -11,17 +11,16 @@ table1 = readtable('transform.csv',"NumHeaderLines", 2, "VariableNamingRule", "p
 wordCell = table1.Properties.VariableNames;
 numWords = width(table1);
 words = strings(numWords);
-words = words(:,1);
-words(1) = '/n';
 for n = 2:numWords
     words(n) = wordCell{n-1};
 end
 beginWord = "know";
 i=0;
 startVec = (words==beginWord);
+startVec = startVec(:,1);
 matrix = transpose(table1{:,:});
 
-output = Bumblebee(matrix, startVec, 6, words);
+output = Bumblebee(matrix, startVec, 6, words, false);
 
 
 
