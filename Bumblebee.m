@@ -42,14 +42,10 @@ function lyrics = Bumblebee(wordMat, beginVec, numIter, totalWords, isIter)
     while i < numIter
         %find next word and also recalc matrix and vector for next word
         prevIndex = currIndex;
-        if (size(prevIndex) > 1)
-            prevIndex = prevIndex(1);
-        end
+        prevIndex = prevIndex(1);
         data = nextWord(wordMat, currProb); % have this take vec and return vec
         currIndex = data{2};
-        if (size(currIndex) > 1)
-            currIndex = currIndex(1);
-        end
+        currIndex = currIndex(1);
         currProb = data{1}
         if (isIter) 
             currProb = max(currProb) == currProb;
@@ -63,7 +59,7 @@ function lyrics = Bumblebee(wordMat, beginVec, numIter, totalWords, isIter)
         i = i+1;
         wordList(i) = totalWords(index);
     end
-    lyrics = wordList;
+    lyrics = wordList(:,1);
 
 end
 

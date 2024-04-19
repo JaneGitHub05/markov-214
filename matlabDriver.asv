@@ -20,7 +20,7 @@ startVec = (words==beginWord);
 startVec = startVec(:,1);
 matrix = transpose(table1{:,:});
 
-output = Bumblebee(matrix, startVec, 6, words, fa);
+output = Bumblebee(matrix, startVec, , words, false);
 
 
 
