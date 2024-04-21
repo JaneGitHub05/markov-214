@@ -15,13 +15,13 @@ words(1) = "/n";
 for n = 2:numWords
     words(n) = wordCell{n-1};
 end
-beginWord = "know";
+beginWord = "twinkle";
 i=0;
 startVec = (words==beginWord);
 startVec = startVec(:,1);
 matrix = transpose(table1{:,:});
 
-output = Bumblebee(matrix, startVec, 6, words, true)
+output = Bumblebee(matrix, startVec, 10, words, true)
 
 
 
